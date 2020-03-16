@@ -1,0 +1,19 @@
+os: windows
+language: shell
+before_script:
+  - choco install python3
+  - py -3 -m pip install lxml path html5lib beautifulsoup4
+script: bash deploy.sh --check
+before_deploy:
+  - py -3 -m pip install libsass
+  - bash deploy.sh --deploy
+  - export RELEASE_ZIP=$(ls *.zip)
+deploy:
+  - provider: releases
+    token: $REPO_GH_TOKEN
+    file_glob: true
+    file: $RELEASE_ZIP
+    skip_cleanup: true
+    overwrite: true
+    on:
+      tags: true
