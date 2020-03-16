@@ -97,11 +97,6 @@ case $1 in
         exit 0
     fi
 
-    if [ -z "$TRAVIS_TAG" ] && git show -s HEAD | grep -F -q "(autoupdate)"; then
-        echo "Skipping commit produced by autoupdate..."
-        exit 0
-    fi
-
     if [[ $(git tag) ]]; then
         CURRENT_TAG=$(git describe --tags --abbrev=0)
         [[ $CURRENT_TAG =~ -[0-9]+$ ]] && CURRENT_REVISION=${CURRENT_TAG##*-}
