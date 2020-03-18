@@ -4,7 +4,7 @@
 
 [**Download Qt Documentation CHM 5.14.1**](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/releases/latest)
 
-This repository will be automatically updated after each official Qt release. An update check will be performed **once a week**.
+This repository will be automatically updated after each official Qt release.
 
 ## Workflow
 
