@@ -23,25 +23,26 @@ def get_last_version():
 
 def get_docs_urls(qt_version):
     qt_version_flat = qt_version.replace('.', '')
-    qt_docs_repo = f"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_{qt_version_flat}_src_doc_examples/"
+    qt_docs_repo_root = f"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_{qt_version_flat}_src_doc_examples"
+    qt_docs_repo_xml = f"{qt_docs_repo_root}/Updates.xml"
 
     try:
-        with urllib.request.urlopen(qt_docs_repo) as p:
-            page = bs4.BeautifulSoup(p.read(), 'html5lib')
+        with urllib.request.urlopen(qt_docs_repo_xml) as p:
+            page = bs4.BeautifulSoup(p.read(), 'xml')
     except urllib.error.HTTPError as e:
         if e.code == 404:
-            raise ValueError(f"Documentation repository for Qt v.{qt_version} not found!") from e
+            raise ValueError(f"Documentation repository XML for Qt v.{qt_version} not found!") from e
 
-    doc_dirs = (urllib.parse.urljoin(qt_docs_repo, l.get('href')) for l in
-                page.find_all('a', attrs={'href': re.compile("^qt\..*\.doc[\./].*$")}))
+    packages = [p.parent for p in page.find_all("Name", text=re.compile("^qt\..*?\.doc(\..*)?$"))]
 
     docs_urls = []
-    for doc_dir in doc_dirs:
-        with urllib.request.urlopen(doc_dir) as p:
-            page = bs4.BeautifulSoup(p.read(), 'html5lib')
+    for package in packages:
+        package_name = package.find("Name").text
+        package_version = package.find("Version").text
+        package_archives = package.find("DownloadableArchives").text.split(", ")
 
-        docs_urls += (urllib.parse.urljoin(doc_dir, l.get('href')) for l in
-                      page.find_all('a', attrs={'href': re.compile("^.*-documentation\.7z$")}))
+        for archive_name in package_archives:
+            docs_urls.append(f"{qt_docs_repo_root}/{package_name}/{package_version}{archive_name}")
 
     if not docs_urls:
         raise RuntimeError(f"No documentation archives for Qt v.{qt_version} found!")
