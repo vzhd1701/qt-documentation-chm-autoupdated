@@ -134,7 +134,7 @@ case $1 in
 
     echo "Downloading archives..."
 
-    wget -q -i docs_list.txt -P Docs
+    aria2c -q -d Docs -j 10 --async-dns=false -i docs_list.txt
 
     echo "Unpacking archives..."
 

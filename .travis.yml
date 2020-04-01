@@ -5,6 +5,7 @@ before_script:
   - py -3 -m pip install lxml path html5lib beautifulsoup4
 script: bash deploy.sh --check
 before_deploy:
+  - choco install aria2
   - py -3 -m pip install libsass
   - bash deploy.sh --deploy
   - export RELEASE_ZIP=$(ls *.zip)
