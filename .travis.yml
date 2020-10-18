@@ -2,6 +2,7 @@ os: windows
 language: shell
 before_script:
   - choco install python3 --version 3.8.6
+  - py -3 -m pip install wheel
   - py -3 -m pip install lxml path html5lib beautifulsoup4
 script: bash deploy.sh --check
 before_deploy:
