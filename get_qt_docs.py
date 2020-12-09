@@ -23,7 +23,8 @@ def get_last_version():
 
 def get_docs_urls(qt_version):
     qt_version_flat = qt_version.replace('.', '')
-    qt_docs_repo_root = f"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_{qt_version_flat}_src_doc_examples"
+    qt_version_major = qt_version_flat[0]
+    qt_docs_repo_root = f"https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt{qt_version_major}_{qt_version_flat}_src_doc_examples"
     qt_docs_repo_xml = f"{qt_docs_repo_root}/Updates.xml"
 
     try:
