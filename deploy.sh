@@ -15,7 +15,8 @@ verlte() {
 compile_chm() {
     # Chocolatey has html-help-workshop, but it cannot install it properly
 
-    wget -q "https://download.microsoft.com/download/0/A/9/0A939EF6-E31C-430F-A3DF-DFAE7960D564/htmlhelp.exe"
+    # wget -q "https://download.microsoft.com/download/0/A/9/0A939EF6-E31C-430F-A3DF-DFAE7960D564/htmlhelp.exe"
+    wget -q "https://www.helpandmanual.com/download/htmlhelp.exe"
     7z x -y -ohtmlhelp htmlhelp.exe &> /dev/null
     7z x -y -ohtmlhelp htmlhelp/hhupd.exe &> /dev/null
 
