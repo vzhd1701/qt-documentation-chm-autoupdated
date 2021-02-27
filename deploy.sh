@@ -8,6 +8,10 @@ USER_EMAIL="vzhd1701@gmail.com"
 VERSION_CHECKFILE_QT_DOCS="version_qt_docs"
 VERSION_CHECKFILE_REVISION="version_revision"
 
+verlte() {
+    [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
+}
+
 compile_chm() {
     # Chocolatey has html-help-workshop, but it cannot install it properly
 
@@ -112,9 +116,14 @@ case $1 in
         [ -f "$VERSION_CHECKFILE_REVISION" ] && LATEST_REVISION=$(cat "$VERSION_CHECKFILE_REVISION")
     fi
 
-    if [ "$LATEST_QT_VERSION" == "$CURRENT_QT_VERSION" ] && [ "$LATEST_REVISION" == "$CURRENT_REVISION" ]; then
-        echo "Current version is up to date, terminating..."
-        exit 0
+    if [ "$LATEST_QT_VERSION" == "$CURRENT_QT_VERSION" ]; then
+        if [ "$LATEST_REVISION" == "$CURRENT_REVISION" ]; then
+            echo "Current version is up to date, terminating..."
+            exit 0
+        fi    
+    elif verlte "$LATEST_QT_VERSION" "$CURRENT_QT_VERSION"; then
+        echo "Latest version is lower than current! Something wrong, terminating..."
+        exit 1
     fi
 
     echo "Latest Version: $LATEST_QT_VERSION"
