@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.com/vzhd1701/qt-documentation-chm-autoupdated.svg?branch=master)](https://travis-ci.com/vzhd1701/qt-documentation-chm-autoupdated)
 [![Qt Docs Version](https://img.shields.io/github/v/release/vzhd1701/qt-documentation-chm-autoupdated?color=%230F&label=Qt%20Docs)](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/releases/latest)
 
-[**Download Qt Documentation CHM 6.0.4**](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/releases/latest)
+[**Download Qt Documentation CHM 6.1.0**](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/releases/latest)
 
 This repository will be automatically updated after each official Qt release.
 
