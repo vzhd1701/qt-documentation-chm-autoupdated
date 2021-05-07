@@ -11,6 +11,10 @@ The basic idea is to use CI to download latest Qt Docs pre-built in HTML format 
 
 ## Helper scripts
 
+### build_docs.sh
+
+Builds the CHM file from the documentation of select Qt release
+
 ### get_qt_docs.py
 
 ```
