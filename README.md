@@ -2,7 +2,7 @@
 [![Qt Docs Version](https://img.shields.io/github/v/release/vzhd1701/qt-documentation-chm-autoupdated?color=%230F&label=Qt%20Docs)](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/releases/latest)
 [![Qt Docs autobuild](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/actions/workflows/qt_autobuild.yml/badge.svg)](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/actions/workflows/qt_autobuild.yml)
 
-[**Download Qt Documentation CHM 6.1.0**](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/releases/latest)
+[**Download Qt Documentation CHM 6.1.1**](https://github.com/vzhd1701/qt-documentation-chm-autoupdated/releases/latest)
 
 This repository will be automatically updated after each official Qt release.
 
