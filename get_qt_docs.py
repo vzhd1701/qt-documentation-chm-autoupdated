@@ -40,7 +40,7 @@ def get_docs_urls(qt_version):
     for package in packages:
         package_name = package.find("Name").text
         package_version = package.find("Version").text
-        package_archives = package.find("DownloadableArchives").text.split(", ")
+        package_archives = [p.strip() for p in package.find("DownloadableArchives").text.split(",") if p.strip()]
 
         for archive_name in package_archives:
             docs_urls.append(f"{qt_docs_repo_root}/{package_name}/{package_version}{archive_name}")
